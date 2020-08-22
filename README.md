@@ -15,12 +15,12 @@ npm install --save react-currency-icons
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-currency-icons'
+import Currency from 'react-currency-icons'
 import 'react-currency-icons/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <Currency code="USD" size="small" />
   }
 }
 ```
