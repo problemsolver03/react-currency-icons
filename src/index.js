@@ -1,6 +1,41 @@
-import React from 'react'
-import styles from './styles.module.css'
+import React from 'react';
 
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
+const Currency = ({ code, size="small" }) => {
+  
+  try {
+    const iconsList = {
+      USD: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMS4wICg0MDM1YTRmYjQ5LCAyMDIwLTA1LTAxKSIKICAgc29kaXBvZGk6ZG9jbmFtZT0ibm91bl9Vbml0ZWQgU3RhdGVzIERvbGxhciBVU0RfOTU0NjcwLnN2ZyIKICAgaWQ9InN2ZzE0IgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMDAgMTAwOyIKICAgdmlld0JveD0iMCAwIDEwMCAxMjUiCiAgIHk9IjBweCIKICAgeD0iMHB4IgogICB2ZXJzaW9uPSIxLjEiPjxtZXRhZGF0YQogICAgIGlkPSJtZXRhZGF0YTIwIj48cmRmOlJERj48Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+PGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+PGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPjwvY2M6V29yaz48L3JkZjpSREY+PC9tZXRhZGF0YT48ZGVmcwogICAgIGlkPSJkZWZzMTgiIC8+PHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9Imc4IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii04IgogICAgIGlua3NjYXBlOndpbmRvdy14PSItOCIKICAgICBpbmtzY2FwZTpjeT0iNjYuNzE2MjciCiAgICAgaW5rc2NhcGU6Y3g9IjU1LjM5Njk0MyIKICAgICBpbmtzY2FwZTp6b29tPSIzLjA0MzM4NzYiCiAgICAgc2hvd2dyaWQ9ImZhbHNlIgogICAgIGlkPSJuYW1lZHZpZXcxNiIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSI3MDUiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxMzY2IgogICAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgZ3VpZGV0b2xlcmFuY2U9IjEwIgogICAgIGdyaWR0b2xlcmFuY2U9IjEwIgogICAgIG9iamVjdHRvbGVyYW5jZT0iMTAiCiAgICAgYm9yZGVyb3BhY2l0eT0iMSIKICAgICBib3JkZXJjb2xvcj0iIzY2NjY2NiIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiIC8+PGcKICAgICBpZD0iZzgiPjxwYXRoCiAgICAgICBpZD0icGF0aDIiCiAgICAgICBkPSJNNTAuNyw3Mi4yYzEsMCwxLjktMC44LDEuOS0xLjlWNjhjMy40LTAuMyw0LjgtMC44LDYuOC0yYzIuOS0xLjgsNC40LTQuNyw0LjQtOC42YzAtMy4zLTEuMS01LjctMy42LTcuNSAgIGMtMS42LTEuMi0zLjItMS45LTcuNi0zVjM0LjRjMiwwLjMsMi43LDAuNywzLjksMS45YzAuOSwwLjgsMS41LDEuNywxLjgsMi45YzAuMywwLjksMS4xLDEuNSwyLjEsMS41YzAuMSwwLDAuMywwLDAuNCwwICAgYzAuNi0wLjEsMS4xLTAuNSwxLjUtMWMwLjMtMC41LDAuNC0xLjIsMC4yLTEuN2MtMC41LTEuNi0xLjItMi43LTIuNS0zLjljLTEuOC0xLjgtMy4zLTIuNy03LjQtMy4xdi0wLjZjMC0xLTAuOC0xLjktMS45LTEuOSAgIGMtMSwwLTEuOSwwLjgtMS45LDEuOXYwLjVjLTIuOSwwLjMtNC4zLDAuNy02LjMsMmMtMi43LDEuNy00LjIsNC41LTQuMiw3LjljMCwzLjEsMS40LDUuOCwzLjgsNy4zYzEuOCwxLjEsMi45LDEuNyw2LjYsMi41djEzLjkgICBjLTIuNi0wLjItMy44LTAuOS01LTIuMmMtMS0xLTEuNS0yLTEuOC0zLjZjLTAuMi0xLTEuMS0xLjctMi4xLTEuN2MtMC4xLDAtMC4yLDAtMC4zLDBjLTAuNiwwLjEtMS4xLDAuNC0xLjUsMC45ICAgYy0wLjMsMC41LTAuNCwxLjEtMC4zLDEuN2MwLjYsMi4zLDEuNCwzLjgsMi44LDUuM2MxLjksMS44LDMuNiwyLjcsOC4yLDMuMnYyLjRDNDguOCw3MS40LDQ5LjcsNzIuMiw1MC43LDcyLjJ6IE00NC43LDM1LjkgICBjMS4yLTAuOSwyLTEuMyw0LjEtMS41djEyLjFjLTEuNS0wLjMtMi0wLjYtMi44LTAuOWwtMC4yLTAuMWMtMi4zLTEuMS0zLjMtMi43LTMuMy00LjlDNDIuNSwzOC43LDQzLjQsMzcsNDQuNywzNS45eiBNNTcsNjIuOCAgIGMtMS4zLDEtMi4xLDEuNC00LjUsMS42VjUxLjFjMy4xLDAuOCwzLjgsMS4xLDQuNywxLjhjMS41LDEuMSwyLjIsMi42LDIuMiw0LjdDNTkuNSw1OS44LDU4LjYsNjEuNiw1Nyw2Mi44eiIgLz48L2c+PC9zdmc+Cg=='
+     
+    }
+
+    const sizes = { small: "32px", medium: '44px', large: '64px', xlarge: '100px' }
+  
+
+    const styles = {
+      width: sizes[size]
+    }
+
+  
+    let parsedCode = code.toUpperCase();
+
+    return (
+      <React.Fragment>
+        {
+          !iconsList[parsedCode] ?
+            parsedCode
+            :
+            <img src={iconsList[parsedCode]} style={styles} alt={`${parsedCode} currency icon`} />
+          
+        }
+      
+      </React.Fragment>
+    )
+  }
+  catch (err) {
+   
+    throw new Error("Please make sure you're passing in an code prop with a value") 
+  }
 }
+
+
+export default Currency

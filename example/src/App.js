@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { ExampleComponent } from 'react-currency-icons'
+import Currency  from 'react-currency-icons'
 import 'react-currency-icons/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <Currency code="INR" />
 }
 
 export default App
