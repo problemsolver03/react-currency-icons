@@ -16,7 +16,6 @@ npm install --save react-currency-icons
 import React, { Component } from 'react'
 
 import Currency from 'react-currency-icons'
-import 'react-currency-icons/dist/index.css'
 
 class Example extends Component {
   render() {
@@ -24,6 +23,15 @@ class Example extends Component {
   }
 }
 ```
+
+## Available Currencies
+USD,INR,EUR,GBP,RUB,KRW,CRC,VND,AWG,PYG,LAK,ITL,NGN,MXN,CNY,ILS,TWD,KZT
+
+## Available Sizes
+small,medium,large,xlarge
+
+## Props
+code , size
 
 ## License
 
