@@ -10,6 +10,11 @@
 npm install --save react-currency-icons
 ```
 
+## Preview
+
+![react-currency-icons](https://user-images.githubusercontent.com/64726338/90978713-724bfd00-e56d-11ea-9ba1-632b6e979a22.PNG)
+
+
 ## Usage
 
 ```jsx
